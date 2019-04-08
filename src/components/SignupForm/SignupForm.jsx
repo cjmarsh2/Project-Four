@@ -14,7 +14,6 @@ class SignupForm extends Component {
   handleChange = (e) => {
     this.props.updateMessage('');
     this.setState({
-      // Using ES2015 Computed Property Names
       [e.target.name]: e.target.value
     });
   }
@@ -23,10 +22,9 @@ class SignupForm extends Component {
     e.preventDefault();
     try {
       await userService.signup(this.state);
-      // Successfully signed up - show GamePage
+      this.props.handleSignupOrLogin();
       this.props.history.push('/');
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
     }
   }
@@ -41,27 +39,27 @@ class SignupForm extends Component {
         <header className="header-footer">Sign Up</header>
         <form className="container" onSubmit={this.handleSubmit} >
           <div className="row">
-            <div className="input-field col s12">
+            <div className="input-field col s6">
               <input type="text" placeholder="Name" value={this.state.name} name="name" onChange={this.handleChange} />
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s12">
+            <div className="input-field col s6">
               <input type="email" placeholder="Email" value={this.state.email} name="email" onChange={this.handleChange} />
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s12">
+            <div className="input-field col s6">
               <input type="password" placeholder="Password" value={this.state.password} name="password" onChange={this.handleChange} />
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s12">
+            <div className="input-field col s6">
               <input type="password" placeholder="Confirm Password" value={this.state.passwordConf} name="passwordConf" onChange={this.handleChange} />
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s12 text-center">
+            <div className="input-field col s6 text-center">
               <button className="waves-effect waves-light btn-small" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
             </div>
