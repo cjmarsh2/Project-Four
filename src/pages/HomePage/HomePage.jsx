@@ -12,6 +12,7 @@ class HomePage extends Component {
     return (
       <div className="HomePage">
         <button onClick={this.props.genCrime}>X</button>
+        <button onClick={this.props.removeCurrentKiller}>Y</button>
         {this.props.randomKiller ? (
           <div>{this.props.randomKiller.name}</div>
         ) : (

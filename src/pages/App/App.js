@@ -25,6 +25,17 @@ class App extends Component {
     return randomKiller;
   }
 
+  removeCurrentKiller = () => {
+    let crimeList = this.state.crimes;
+    console.log(this.state.randomKiller)
+    let updatedCrimeList = crimeList.filter((killer) => {
+      return killer !== this.state.randomKiller
+    })
+    this.setState({ crimes: updatedCrimeList})
+    this.genCrime();
+    console.log(updatedCrimeList)
+  }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -56,7 +67,8 @@ class App extends Component {
               <HomePage 
               crimes={this.state.crimes} 
               randomKiller={this.state.randomKiller}
-              genCrime={this.genCrime}/>
+              genCrime={this.genCrime}
+              removeCurrentKiller={this.removeCurrentKiller}/>
               </>
           )}/>
           <Route exact path="/signup" render={({ history }) => (
