@@ -6,7 +6,6 @@ class HomePage extends Component {
   async componentDidMount() {
     await crimesService.index();
     await this.props.genCrime();
-    console.log(this.props.randomKiller)
   }
   render() {
     return (

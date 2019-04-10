@@ -6,14 +6,15 @@ const SALT_ROUNDS = 6;
 const userSchema = new mongoose.Schema({
   name: String,
   email: {type: String, required: true, lowercase: true, unique: true},
-  password: String
+  password: String,
+  crimes: [{type: mongoose.Schema.Types.ObjectId, ref:'Crime'}],
 }, {
   timestamps: true
 });
 
 userSchema.set('toJSON', {
   transform: function(doc, ret) {
-    delete ret.password;
+    delete ret.password, ret.crimes;
     return ret;
   }
 });

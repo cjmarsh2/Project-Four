@@ -27,7 +27,6 @@ class App extends Component {
 
   removeCurrentKiller = () => {
     let crimeList = this.state.crimes;
-    console.log(this.state.randomKiller)
     let updatedCrimeList = crimeList.filter((killer) => {
       return killer !== this.state.randomKiller
     })
@@ -35,6 +34,7 @@ class App extends Component {
     this.genCrime();
     console.log(updatedCrimeList)
   }
+
 
   handleLogout = () => {
     userService.logout();
@@ -47,10 +47,8 @@ class App extends Component {
 
   async componentDidMount() {
     const crimes = await crimesService.index();
-    console.log(crimes);
     const user = userService.getUser();
     this.setState({ user, crimes });
-    console.log(this.state.crimes);
   }
 
   render() {
