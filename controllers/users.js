@@ -14,7 +14,7 @@ module.exports = {
 async function show(req, res){
   try{
     const user = await User.findById(req.params.id).populate('crimes')
-    console.log(user)
+    console.log("this is the pop:", user)
     res.json({user})
   }catch {
     res.status(400).json(err);

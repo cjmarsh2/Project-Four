@@ -19,11 +19,11 @@ function getUser() {
   return tokenService.getUserFromToken();
 }
 
-function getUserInfo() {
+function getUserInfo(user_id) {
   const options = {
     method: "GET"
   };
-  return fetch(BASE_URL, options).then(res => res.json());
+  return fetch(BASE_URL + user_id, options).then(res => res.json());
 }
 
 function logout() {

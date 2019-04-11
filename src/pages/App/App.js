@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       user: null,
       crimes: [],
-      randomPerp: null,
+      randomPerp: null
     };
   }
 
@@ -43,6 +43,10 @@ class App extends Component {
     this.genCrime();
   }
 
+  handleUpdateUser = async () => {
+    const user = await userService.getUserInfo(this.state.user._id);
+    this.setState({ user });
+  }
 
   handleLogout = () => {
     userService.logout();
@@ -51,14 +55,11 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
-    let user = this.state.user;
-    console.log(user)
   };
 
   async componentDidMount() {
     const crimes = await crimesService.index();
     const user = userService.getUser();
-    console.log(user);
     this.setState({ user, crimes });
   }
 
@@ -66,25 +67,24 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">Killing Time</header>
+        <NavBar
+            user={this.state.user} 
+            handleLogout={this.handleLogout}
+        />
         <Switch>
           <Route exact path="/" render={() => (
-            <>
-              <NavBar
-                user={this.state.user} 
-                handleLogout={this.handleLogout}
-              />
               <HomePage 
                 crimes={this.state.crimes} 
                 randomPerp={this.state.randomPerp}
                 genCrime={this.genCrime}
                 removeCurrentPerp={this.removeCurrentPerp}
                 addCurrentPerp={this.addCurrentPerp}/>
-              </>
           )}/>
           <Route exact path="/profile" render={() => (
             <>
               <ProfilePage 
                 user={this.state.user}
+                handleUpdateUser={this.handleUpdateUser}
               />
             </>
           )}/>
