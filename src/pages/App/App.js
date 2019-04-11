@@ -7,6 +7,7 @@ import userService from "../../utils/userService";
 import NavBar from "../../components/NavBar/NavBar";
 import HomePage from "../HomePage/HomePage"
 import crimesService from "../../utils/crimesService";
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 class App extends Component {
   constructor() {
@@ -14,25 +15,32 @@ class App extends Component {
     this.state = {
       user: null,
       crimes: [],
-      randomKiller: null
+      randomPerp: null,
     };
   }
 
   genCrime =() => {
     let crimeList = this.state.crimes;
-    let randomKiller = crimeList[Math.floor(Math.random()*crimeList.length)];
-    this.setState({randomKiller: randomKiller});
-    return randomKiller;
+    let randomPerp = crimeList[Math.floor(Math.random()*crimeList.length)];
+    this.setState({randomPerp: randomPerp});
+    return randomPerp;
   }
 
-  removeCurrentKiller = () => {
+  removeCurrentPerp = () => {
     let crimeList = this.state.crimes;
-    let updatedCrimeList = crimeList.filter((killer) => {
-      return killer !== this.state.randomKiller
+    let updatedCrimeList = crimeList.filter((perp) => {
+      return perp !== this.state.randomPerp
     })
     this.setState({ crimes: updatedCrimeList})
     this.genCrime();
     console.log(updatedCrimeList)
+  }
+
+  addCurrentPerp = async () => {
+    let res = await userService.createList({randomPerp: this.state.randomPerp}, this.state.user._id)
+    this.setState({user:{...this.state.user, crimes:res.crimes}})
+    this.removeCurrentPerp();
+    this.genCrime();
   }
 
 
@@ -43,11 +51,14 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
+    let user = this.state.user;
+    console.log(user)
   };
 
   async componentDidMount() {
     const crimes = await crimesService.index();
     const user = userService.getUser();
+    console.log(user);
     this.setState({ user, crimes });
   }
 
@@ -63,11 +74,19 @@ class App extends Component {
                 handleLogout={this.handleLogout}
               />
               <HomePage 
-              crimes={this.state.crimes} 
-              randomKiller={this.state.randomKiller}
-              genCrime={this.genCrime}
-              removeCurrentKiller={this.removeCurrentKiller}/>
+                crimes={this.state.crimes} 
+                randomPerp={this.state.randomPerp}
+                genCrime={this.genCrime}
+                removeCurrentPerp={this.removeCurrentPerp}
+                addCurrentPerp={this.addCurrentPerp}/>
               </>
+          )}/>
+          <Route exact path="/profile" render={() => (
+            <>
+              <ProfilePage 
+                user={this.state.user}
+              />
+            </>
           )}/>
           <Route exact path="/signup" render={({ history }) => (
               <SignupPage

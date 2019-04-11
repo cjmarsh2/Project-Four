@@ -10,12 +10,12 @@ class HomePage extends Component {
   render() {
     return (
       <div className="HomePage">
-        <button onClick={this.props.genCrime}>X</button>
-        <button onClick={this.props.removeCurrentKiller}>Y</button>
-        {this.props.randomKiller ? (
-          <div>{this.props.randomKiller.name}</div>
+        <button onClick={this.props.removeCurrentPerp}>X</button>
+        <button onClick={this.props.addCurrentPerp}>Y</button>
+        {this.props.randomPerp ? (
+          <div>{this.props.randomPerp.name}</div>
         ) : (
-          <p>choose a killer</p>
+          <p>All crimes have been viewed!</p>
         )}
       </div>
     );
