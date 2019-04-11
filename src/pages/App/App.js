@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   handleUpdateUser = async () => {
-    const user = await userService.getUserInfo(this.state.user._id);
+    let user = await userService.getUserInfo(this.state.user._id);
     this.setState({ user });
   }
 
@@ -83,8 +83,8 @@ class App extends Component {
           <Route exact path="/profile" render={() => (
             <>
               <ProfilePage 
-                user={this.state.user}
                 handleUpdateUser={this.handleUpdateUser}
+                user={this.state.user}
               />
             </>
           )}/>
