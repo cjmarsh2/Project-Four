@@ -21,8 +21,7 @@ function getUser() {
 
 function getUserInfo() {
   const options = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+    method: "GET"
   };
   return fetch(BASE_URL, options).then(res => res.json());
 }
