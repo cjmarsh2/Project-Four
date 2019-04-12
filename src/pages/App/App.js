@@ -3,11 +3,12 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-import userService from "../../utils/userService";
-import NavBar from "../../components/NavBar/NavBar";
 import HomePage from "../HomePage/HomePage"
-import crimesService from "../../utils/crimesService";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import CriminalPage from "../CriminalPage/CriminalPage";
+import NavBar from "../../components/NavBar/NavBar";
+import userService from "../../utils/userService";
+import crimesService from "../../utils/crimesService";
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,8 @@ class App extends Component {
     this.state = {
       user: null,
       crimes: [],
-      randomPerp: null
+      randomPerp: null,
+      perp: null
     };
   }
 
@@ -48,6 +50,21 @@ class App extends Component {
     this.setState({ user });
   }
 
+  getPerp = async (crime) => {
+    await this.setState({perp: crime});
+    console.log(this.state.perp)
+  }
+
+  // handleDeleteCrime = (e) => {
+  //   let crimeList = [...this.state.crimes];
+  //   let index = crimeList.indexOf(e.target.name)
+  //   if (index !== -1) {
+  //     crimeList.splice(index, 1);
+  //     this.setState({crimes: crimeList});
+  //     console.log(crimeList)
+  //   }
+  // }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -58,8 +75,8 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const crimes = await crimesService.index();
     const user = userService.getUser();
+    const crimes = await crimesService.index();
     this.setState({ user, crimes });
   }
 
@@ -84,7 +101,15 @@ class App extends Component {
             <>
               <ProfilePage 
                 handleUpdateUser={this.handleUpdateUser}
+                getPerp={this.getPerp}
                 user={this.state.user}
+              />
+            </>
+          )}/>
+          <Route exact path="/criminal" render={() => (
+            <>
+              <CriminalPage 
+              perp={this.state.perp}
               />
             </>
           )}/>
