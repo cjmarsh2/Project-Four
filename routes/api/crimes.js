@@ -5,7 +5,6 @@ const Crime = require('../../models/crime')
 
 
 router.get('/', crimesCtrl.index);
-// router.get('/:id', crimesCtrl.show)
 router.post('/create', (req, res)=>{
     let crime = new Crime(req.body)
     try {

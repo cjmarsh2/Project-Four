@@ -35,7 +35,6 @@ class App extends Component {
     })
     this.setState({ crimes: updatedCrimeList})
     this.genCrime();
-    console.log(updatedCrimeList)
   }
 
   addCurrentPerp = async () => {
@@ -46,24 +45,28 @@ class App extends Component {
   }
 
   handleUpdateUser = async () => {
-    let user = await userService.getUserInfo(this.state.user._id);
-    this.setState({ user });
-  }
+    try {
+      let userId = this.state.user._id;
+      let user = await userService.getUserInfo(userId);
+      this.setState({ user });
 
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
   getPerp = async (crime) => {
     await this.setState({perp: crime});
-    console.log(this.state.perp)
   }
-
-  // handleDeleteCrime = (e) => {
-  //   let crimeList = [...this.state.crimes];
-  //   let index = crimeList.indexOf(e.target.name)
-  //   if (index !== -1) {
-  //     crimeList.splice(index, 1);
-  //     this.setState({crimes: crimeList});
-  //     console.log(crimeList)
-  //   }
-  // }
+  
+  handleDeletePerp = async (e) => {
+    const deletePerp = e.target.name;
+    let userId = this.state.user._id;
+    await userService.deletePerp(deletePerp, userId).then( async () => {
+      let user = await userService.getUserInfo(userId);
+      this.setState({ user });
+    })
+  }
 
   handleLogout = () => {
     userService.logout();
@@ -87,6 +90,7 @@ class App extends Component {
         <NavBar
             user={this.state.user} 
             handleLogout={this.handleLogout}
+            // handleUpdateUser={this.handleUpdateUser}
         />
         <Switch>
           <Route exact path="/" render={() => (
@@ -101,6 +105,7 @@ class App extends Component {
             <>
               <ProfilePage 
                 handleUpdateUser={this.handleUpdateUser}
+                handleDeletePerp={this.handleDeletePerp}
                 getPerp={this.getPerp}
                 user={this.state.user}
               />

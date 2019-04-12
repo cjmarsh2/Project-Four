@@ -8,15 +8,31 @@ module.exports = {
   signup,
   login,
   createCrimeList,
-  show
+  show,
+  deletePerp
 };
+
+async function deletePerp(req, res){
+  try{
+   const user = await User.findById(req.body.user, (err,user) => {
+     if (err) throw new Error(err);
+     let perp = user.crimes.indexOf(req.body.perp);
+     while(user.crimes.indexOf(req.body.perp) != -1) { // if found
+        user.crimes.splice(perp,1);
+      }
+      user.save();
+   });
+  res.json(user);
+  }catch (err){
+    res.status(400).json(err);
+  }
+}
 
 async function show(req, res){
   try{
     const user = await User.findById(req.params.id).populate('crimes')
-    console.log("this is the pop:", user)
-    res.json({user})
-  }catch {
+    res.json(user)
+  }catch (err) {
     res.status(400).json(err);
   }
 }
@@ -24,10 +40,8 @@ async function show(req, res){
 async function createCrimeList(req, res){
   try {
     const randomPerp_id = req.body.randomPerp.randomPerp._id
-    console.log(randomPerp_id)
     const likedPerp = await Crime.findById(randomPerp_id)
     const user = await User.findById(req.params.id)
-    console.log(likedPerp)
     user.crimes.push(likedPerp)
     user.save()
     res.json({crimes: user.crimes})

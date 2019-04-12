@@ -44,8 +44,6 @@ function login(creds) {
 }
 
 function createList(randomPerp, user_id) {
-  console.log(user_id);
-  console.log(randomPerp);
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -54,11 +52,25 @@ function createList(randomPerp, user_id) {
   return fetch(BASE_URL + user_id, options).then(res => res.json());
 }
 
+function deletePerp(deletePerp, user_id) {
+  var body = {
+    user: user_id,
+    perp: deletePerp
+  }
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  return fetch(BASE_URL, options).then(res => res.text());
+}
+
 export default {
   signup,
   getUser,
   logout,
   login,
   createList,
-  getUserInfo
+  getUserInfo,
+  deletePerp
 };

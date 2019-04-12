@@ -6,17 +6,13 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const crimes = await Crime.find({}, function(err, crimes){
-        res.json(crimes);
-    })
+    try {
+        const crimes = await Crime.find({}, function(err, crimes){
+            res.json(crimes);
+        })
+    } catch (err) {
+        return res.status(401).json(err);
+    }
+    
 }
 
-// async function show(req, res) {
-//     try {
-//         const perp = await Crime.findById(req.params.id)
-//         console.log("this is the criminal", perp)
-//         res.json({perp})
-//     } catch {
-//         res.status(400).json(err);
-//     }
-// }
