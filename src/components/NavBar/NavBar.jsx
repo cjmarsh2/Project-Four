@@ -1,22 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import './NavBar.css';
 
 const NavBar = (props) => {
     let nav = props.user ?
-      <div className="Navbar">
-        <Link to='' className="Link">Find Crimes</Link>
-        <Link to='/profile' className="Link">My Crimes</Link>
-        <Link to='' className="Link" onClick={props.handleLogout}>LOG OUT</Link>
-      </div>
+      <Navbar className="Navbar">
+        <Link to='' className="Logo">Killing Time</Link>
+        <Nav className="justify-content-end">
+          <Nav.Item>
+            <Link to='' className="Link">Find Crimes</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to='/profile' className="Link">My Crimes</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to='' className="Link" onClick={props.handleLogout}>Log Out</Link>
+          </Nav.Item>
+        </Nav>
+      </Navbar>
       :
-      <div className="Navbar">
+      <Navbar className="Navbar">
+        <Link to='' className="Logo">Killing Time</Link>
         <Link to='/login' className="Link">LOG IN</Link>
         <Link to='/signup' className="Link">SIGN UP</Link>
-      </div>;
+      </Navbar>;
   
     return (
-      <div className="Navbar">
+      <div>
         {nav}
       </div>
     );

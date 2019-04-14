@@ -86,11 +86,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">Killing Time</header>
         <NavBar
             user={this.state.user} 
             handleLogout={this.handleLogout}
-            // handleUpdateUser={this.handleUpdateUser}
         />
         <Switch>
           <Route exact path="/" render={() => (

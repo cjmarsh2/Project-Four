@@ -1,17 +1,14 @@
 .Navbar {
-  display: flex;
-  justify-content: flex-end;
   margin: 0 0 20px;
   background-color: #880e4f;
 }
 
-.Navbar .Link {
+.Link {
   margin: 0 10px;
   color: white;
 }
 
-.Navbar .Welcome {
+.Logo {
   color: white;
-  margin: 0 10px;
-  text-align: left;
+  font-size: 30px;
 }

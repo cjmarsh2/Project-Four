@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card'
+import './HomePage.css';
 import crimesService from "../../utils/crimesService";
 
 class HomePage extends Component {
@@ -10,10 +12,15 @@ class HomePage extends Component {
   render() {
     return (
       <div className="HomePage">
-        <button onClick={this.props.removeCurrentPerp}>X</button>
-        <button onClick={this.props.addCurrentPerp}>Y</button>
         {this.props.randomPerp ? (
-          <div>{this.props.randomPerp.name}</div>
+          <Card className="Card" style={{ width: '20rem' }}>
+          <Card.Img variant="top" src={this.props.randomPerp.img} alt="Criminal" />
+          <Card.Body>
+            <Card.Title>{this.props.randomPerp.name}</Card.Title>
+            <button class="btn btn-danger btn-lg" onClick={this.props.removeCurrentPerp}>X</button>
+            <button class="btn btn-info btn-lg" onClick={this.props.addCurrentPerp}>Y</button>
+          </Card.Body>
+          </Card>
         ) : (
           <p>All crimes have been viewed!</p>
         )}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import './ProfilePage.css';
 
 class ProfilePage extends Component {
   async componentDidMount() {

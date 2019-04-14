@@ -6,7 +6,8 @@ const crimeSchema = new mongoose.Schema({
     born: Date,
     death: Date,
     married: Boolean,
-    content: String
+    content: String,
+    img: String
   });
 
   module.exports = mongoose.model('Crime', crimeSchema);

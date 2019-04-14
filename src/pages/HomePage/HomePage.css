@@ -1,0 +1,22 @@
+
+.HomePage {
+    text-align: center;
+    display: flex;
+    justify-content: center;   
+    margin-top: 50px;
+}
+
+.btn-danger {
+    border-radius: 50%;
+    margin-right: 80px;
+    font-weight: 900;
+}
+.btn-info {
+    border-radius: 50%;
+    margin-left: 80px;
+    font-weight: 900;
+}
+
+.Card {
+    border: 6px solid white;
+}
