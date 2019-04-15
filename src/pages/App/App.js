@@ -6,6 +6,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage"
 import ProfilePage from "../ProfilePage/ProfilePage";
 import CriminalPage from "../CriminalPage/CriminalPage";
+import AboutPage from "../AboutPage/AboutPage";
 import NavBar from "../../components/NavBar/NavBar";
 import userService from "../../utils/userService";
 import crimesService from "../../utils/crimesService";
@@ -92,12 +93,15 @@ class App extends Component {
         />
         <Switch>
           <Route exact path="/" render={() => (
+            userService.getUser() ?
               <HomePage 
                 crimes={this.state.crimes} 
                 randomPerp={this.state.randomPerp}
                 genCrime={this.genCrime}
                 removeCurrentPerp={this.removeCurrentPerp}
                 addCurrentPerp={this.addCurrentPerp}/>
+              :
+              <AboutPage />
           )}/>
           <Route exact path="/profile" render={() => (
             <>
