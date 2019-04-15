@@ -1,9 +1,19 @@
 body {
   background-color: black;
+  font-family: 'Special Elite', cursive;
 }
 
 .App-link {
   color: white;
+}
+
+.App-footer {
+  text-align: right;
+  padding-right: 10px;
+  background-color: #880e4f;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 

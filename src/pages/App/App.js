@@ -129,6 +129,9 @@ class App extends Component {
               />
           )}/>
         </Switch>
+        <footer className="App-footer">
+          <div>All Rights Reserved, &copy; 2019 </div>
+        </footer>
       </div>
     );
   }

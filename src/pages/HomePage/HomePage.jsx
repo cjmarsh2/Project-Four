@@ -14,11 +14,11 @@ class HomePage extends Component {
       <div className="HomePage">
         {this.props.randomPerp ? (
           <Card className="Card" style={{ width: '20rem' }}>
-          <Card.Img variant="top" src={this.props.randomPerp.img} alt="Criminal" />
+          <Card.Img className="Card-img" variant="top" src={this.props.randomPerp.img} alt="Criminal" />
           <Card.Body>
-            <Card.Title>{this.props.randomPerp.name}</Card.Title>
+            <Card.Title className="Card-title">{this.props.randomPerp.name}</Card.Title>
             <button class="btn btn-danger btn-lg" onClick={this.props.removeCurrentPerp}>X</button>
-            <button class="btn btn-info btn-lg" onClick={this.props.addCurrentPerp}>Y</button>
+            <button class="btn btn-info btn-lg" onClick={this.props.addCurrentPerp}>✔</button>
           </Card.Body>
           </Card>
         ) : (

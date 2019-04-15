@@ -10,6 +10,7 @@
     border-radius: 50%;
     margin-right: 80px;
     font-weight: 900;
+    font-family: Arial;
 }
 .btn-info {
     border-radius: 50%;
@@ -18,5 +19,16 @@
 }
 
 .Card {
-    border: 6px solid white;
+    border: 8px solid #880e4f;
+
+}
+
+.Card-img {
+    padding: 10px 10px 0 10px;
+
+}
+.Card-title{
+    color: black;
+    font-size: 30px;
+    font-weight: 700;
 }
