@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import HomePage from "../HomePage/HomePage"
@@ -104,21 +104,23 @@ class App extends Component {
               <AboutPage />
           )}/>
           <Route exact path="/profile" render={() => (
-            <>
+              userService.getUser() ?
               <ProfilePage 
                 handleUpdateUser={this.handleUpdateUser}
                 handleDeletePerp={this.handleDeletePerp}
                 getPerp={this.getPerp}
                 user={this.state.user}
               />
-            </>
+              :
+              <Redirect to='/login'/>
           )}/>
           <Route exact path="/criminal" render={() => (
-            <>
+              userService.getUser() ?
               <CriminalPage 
               perp={this.state.perp}
               />
-            </>
+              :
+              <Redirect to='/login'/>
           )}/>
           <Route exact path="/signup" render={({ history }) => (
               <SignupPage
