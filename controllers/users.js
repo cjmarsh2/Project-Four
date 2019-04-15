@@ -9,7 +9,8 @@ module.exports = {
   login,
   createCrimeList,
   show,
-  deletePerp
+  deletePerp,
+  addFavorite
 };
 
 async function deletePerp(req, res){
@@ -30,7 +31,7 @@ async function deletePerp(req, res){
 
 async function show(req, res){
   try{
-    const user = await User.findById(req.params.id).populate('crimes')
+    const user = await User.findById(req.params.id).populate('crimes').populate('favPerp')
     res.json(user)
   }catch (err) {
     res.status(400).json(err);
@@ -45,6 +46,19 @@ async function createCrimeList(req, res){
     user.crimes.push(likedPerp)
     user.save()
     res.json({crimes: user.crimes})
+  } catch (err){
+    res.status(400).json(err);
+  }
+  
+}
+
+async function addFavorite(req,res){
+  try {
+    const favPerp_id = req.body.favPerp;
+    const favPerp = await Crime.findById(favPerp_id)
+    const user = await User.findOneAndUpdate(req.params.id, {favPerp: favPerp}).populate('favPerp')
+    user.save()
+    res.json({favPerp: user.favPerp})
   } catch (err){
     res.status(400).json(err);
   }

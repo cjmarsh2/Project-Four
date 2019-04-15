@@ -17,8 +17,8 @@ class HomePage extends Component {
           <Card.Img className="Card-img" variant="top" src={this.props.randomPerp.img} alt="Criminal" />
           <Card.Body>
             <Card.Title className="Card-title">{this.props.randomPerp.name}</Card.Title>
-            <button class="btn btn-danger btn-lg" onClick={this.props.removeCurrentPerp}>X</button>
-            <button class="btn btn-info btn-lg" onClick={this.props.addCurrentPerp}>✔</button>
+            <button className="btn btn-danger btn-lg" onClick={this.props.removeCurrentPerp}>X</button>
+            <button className="btn btn-info btn-lg" onClick={this.props.addCurrentPerp}>✔</button>
           </Card.Body>
           </Card>
         ) : (

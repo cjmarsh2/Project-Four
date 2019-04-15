@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './CriminalPage.css';
 import Container from 'react-bootstrap/Container';
 
@@ -23,6 +24,9 @@ const CriminalPage = (props) => {
       <Container className="Content">
       <div>{props.perp.content}</div>
       </Container>
+      <Link to='/profile'>
+      <button className="btn btn-info fav-btn" onClick={props.onFavorite} name={props.perp._id}>Make Favorite</button>
+      </Link>
       </div>
     );
   };

@@ -65,6 +65,15 @@ function deletePerp(deletePerp, user_id) {
   return fetch(BASE_URL, options).then(res => res.text());
 }
 
+function handleFavorite(favPerp, user_id) {
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ favPerp: favPerp })
+  };
+  return fetch(BASE_URL + user_id + '/favorite', options).then(res => res.json());
+}
+
 export default {
   signup,
   getUser,
@@ -72,5 +81,6 @@ export default {
   login,
   createList,
   getUserInfo,
-  deletePerp
+  deletePerp,
+  handleFavorite
 };

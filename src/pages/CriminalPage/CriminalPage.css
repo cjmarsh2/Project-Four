@@ -5,8 +5,12 @@
     text-align: left;
     text-indent: 30px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .CriminalPage-img {
     border: 8px solid #880e4f;
+}
+
+.fav-btn {
+    margin-bottom: 40px;
 }

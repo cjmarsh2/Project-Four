@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import FavPerp from "../../components/FavPerp/FavPerp";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -7,11 +8,17 @@ import Table from "react-bootstrap/Table";
 import "./ProfilePage.css";
 
 class ProfilePage extends Component {
+  state = {
+    favPerp: null
+  }
+
   async componentDidMount() {
     await this.props.handleUpdateUser();
+    await this.setState({favPerp: this.props.user.favPerp})
   }
 
   render() {
+    let favPerp = this.props.user ? this.props.user.favPerp : null
     return (
       <div className="ProfilePage">
         {this.props.user && this.props.user.crimes ? (
@@ -19,6 +26,7 @@ class ProfilePage extends Component {
             <Row>
               <Col sm={4}>
               <h3>{this.props.user.name}</h3>
+              { favPerp && <FavPerp perp={favPerp}/>}
               </Col>
               <Col sm={8}>
                 <Table striped bordered hover variant="dark">

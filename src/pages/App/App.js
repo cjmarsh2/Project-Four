@@ -18,7 +18,7 @@ class App extends Component {
       user: null,
       crimes: [],
       randomPerp: null,
-      perp: null
+      perp: null,
     };
   }
 
@@ -69,6 +69,14 @@ class App extends Component {
     })
   }
 
+  onFavorite = async (e) => {
+    const favPerp = e.target.name;
+    let userId = this.state.user._id;
+    let response = await userService.handleFavorite(favPerp, userId);
+    await this.setState({user:{...this.state.user, favPerp:response.favPerp}})
+    this.handleUpdateUser()
+  }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -110,6 +118,7 @@ class App extends Component {
                 handleDeletePerp={this.handleDeletePerp}
                 getPerp={this.getPerp}
                 user={this.state.user}
+                onFavorite={this.onFavorite}
               />
               :
               <Redirect to='/login'/>
@@ -118,6 +127,7 @@ class App extends Component {
               userService.getUser() ?
               <CriminalPage 
               perp={this.state.perp}
+              onFavorite={this.onFavorite}
               />
               :
               <Redirect to='/login'/>
