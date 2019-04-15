@@ -24,6 +24,7 @@ class ProfilePage extends Component {
                 <Table striped bordered hover variant="dark">
                   <thead>
                     <tr>
+                      <th>Mugshot</th>
                       <th>Perpetrator Name</th>
                       <th>Offense</th>
                       <th />
@@ -32,6 +33,9 @@ class ProfilePage extends Component {
                   {this.props.user.crimes.map((crime, idx) => (
                     <tbody>
                       <tr key={idx}>
+                        <td>
+                        <img className="Table-img" src={crime.img} alt="Mugshot"/>
+                        </td>
                         <td>
                           <Link className="Table-link"
                             to="/criminal" onClick={() => this.props.getPerp(crime)}>{crime.name}

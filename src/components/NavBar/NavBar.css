@@ -2,7 +2,9 @@
   margin: 0 0 20px;
   background-color: #880e4f;
 }
-
+.navbar-expand{
+  justify-content: flex-end;
+}
 .Link {
   margin: 0 10px;
   color: white;
@@ -11,4 +13,5 @@
 .Logo {
   color: white;
   font-size: 30px;
+  margin-right: auto;
 }

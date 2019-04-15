@@ -5,7 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import './NavBar.css';
 
 const NavBar = (props) => {
-    let nav = props.user ?
+    return (
+      <div>
+        { props.user ?
       <Navbar className="Navbar">
         <Link to='' className="Logo">Killing Time</Link>
         <Nav className="justify-content-end">
@@ -25,11 +27,7 @@ const NavBar = (props) => {
         <Link to='' className="Logo">Killing Time</Link>
         <Link to='/login' className="Link">LOG IN</Link>
         <Link to='/signup' className="Link">SIGN UP</Link>
-      </Navbar>;
-  
-    return (
-      <div>
-        {nav}
+    </Navbar>}
       </div>
     );
   };
