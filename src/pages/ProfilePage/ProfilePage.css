@@ -2,6 +2,9 @@ body {
     text-align: center;
     color: white;
 }
+.ProfilePage{
+    margin-bottom: 30px;
+}
 .Table-link {
     color: white;
 }
