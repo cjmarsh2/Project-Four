@@ -39,8 +39,8 @@ class ProfilePage extends Component {
                     </tr>
                   </thead>
                   {this.props.user.crimes.map((crime, idx) => (
-                    <tbody>
-                      <tr key={idx}>
+                    <tbody key={idx}>
+                      <tr>
                         <td>
                         <img className="Table-img" src={crime.img} alt="Mugshot"/>
                         </td>

@@ -56,7 +56,7 @@ async function addFavorite(req,res){
   try {
     const favPerp_id = req.body.favPerp;
     const favPerp = await Crime.findById(favPerp_id)
-    const user = await User.findOneAndUpdate(req.params.id, {favPerp: favPerp}).populate('favPerp')
+    const user = await User.findByIdAndUpdate(req.params.id, {favPerp: favPerp}, {new: true}).populate('favPerp')
     user.save()
     res.json({favPerp: user.favPerp})
   } catch (err){
