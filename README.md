@@ -2,19 +2,22 @@
 
 ## Overview
 Killing Time is an app designed to help you kill time. 
+Sign up with ease using Token Based Authentication and enter upon your own peril. 
+Crimes are randomly generated to provide an interactive and fun way for you to choose which crimes you want to learn more about. 
+Easily navigate to your saved crimes via the Navbar. Find more information on the criminal by simply clicking on their name.
+If you find the crime particularly interesting, make it your favorite! This way you can easily reference the crime without having to search for it amongst all your saved crimes. Didn't care for the criminal? No problem, simply press the delete button and remove them from your list. 
 
 ![Imgur](https://i.imgur.com/p16NT5g.png)
 
-Sign up with ease using Token Based Authentication and enter upon your own peril. 
-Crimes are randomly generated to provide an interactive and fun way for you to choose which crimes you want to learn more about. 
+
 
 ![Imgur](https://i.imgur.com/MteMbFJ.png)
 
-Easily navigate to your saved crimes via the Navbar. Find more information on the criminal by simply clicking on their name. 
+ 
 
 ![Imgur](https://i.imgur.com/RAVWVeO.png)
 
-If you find the crime particularly interesting, make it your favorite! This way you can easily reference the crime without having to search for it amongst all your saved crimes. Didn't care for the criminal? No problem, simply press the delete button and remove them from your list. 
+
  
 ![Imgur](https://i.imgur.com/keN4P9e.png)
 
