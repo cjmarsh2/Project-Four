@@ -8,13 +8,8 @@ import Table from "react-bootstrap/Table";
 import "./ProfilePage.css";
 
 class ProfilePage extends Component {
-  state = {
-    favPerp: null
-  }
-
   async componentDidMount() {
     await this.props.handleUpdateUser();
-    await this.setState({favPerp: this.props.user.favPerp})
   }
 
   render() {
